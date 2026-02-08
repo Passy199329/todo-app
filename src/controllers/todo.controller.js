@@ -3,7 +3,7 @@ const Todo = require('../models/todo.model');
 exports.dashboard = async (req, res, next) => {
   try {
     const todos = await Todo.find({ userId: req.session.userId, status: { $ne: 'deleted' } });
-    res.render('dashboard', { todos });
+    res.render('todos', { todos });
   } catch (err) {
     next(err);
   }

@@ -1,24 +1,25 @@
 <h2>My Todos</h2>
-<form method="POST" action="/todos">
-<input name="title" placeholder="New task" required />
-<button>Add</button>
-</form>
 
+<form method="POST" action="/todos">
+  <input name="title" placeholder="New task" required />
+  <button>Add</button>
+</form>
 
 <ul>
-<% todo.forEach(todo => { %>
-<li>
-<%= todo.title %> - <%= todo.status %>
-<form method="POST" action="/todo/<%= todo._id %>">
-<select name="status">
-<option value="pending">Pending</option>
-<option value="completed">Completed</option>
-<option value="deleted">Delete</option>
-</select>
-<button>Update</button>
-</form>
-</li>
-<% }) %>
-</ul>
-<a href="/logout">Logout</a>
+  <% todos.forEach(todo => { %>
+    <li>
+      <%= todo.title %> - <%= todo.status %>
 
+      <form method="POST" action="/todo/<%= todo._id %>">
+        <select name="status">
+          <option value="pending" <%= todo.status === "pending" ? "selected" : "" %>>Pending</option>
+          <option value="completed" <%= todo.status === "completed" ? "selected" : "" %>>Completed</option>
+          <option value="deleted" <%= todo.status === "deleted" ? "selected" : "" %>>Delete</option>
+        </select>
+        <button>Update</button>
+      </form>
+    </li>
+  <% }) %>
+</ul>
+
+<a href="/logout">Logout</a>
